@@ -1,7 +1,7 @@
-import { map } from "lodash";
+import { filter, map, size } from "lodash";
 import { ProgressBar } from "../../components/ProgressBar";
-import { TodoListItem } from "../../components/Todo";
-import { colorDeterminer } from "../../helpers/colorDeterminer";
+import { TodoListItem } from "../../components/TodoListItem";
+import { getColorTheme } from "../../helpers/colorDeterminer";
 import { Todo } from "../../interfaces/todo";
 
 interface Props {
@@ -10,13 +10,15 @@ interface Props {
 }
 
 const TodoSection = ({ todos, type }: Props) => {
-    const color = colorDeterminer(type);
+    const color = getColorTheme(type);
+    console.log({color})
+    const amountDone = size(filter(todos, (todo: Todo) => todo.completedAt))
 
     return (
         <div className="mb-7">
-            <ProgressBar />
+            <ProgressBar total={size(todos)} done={amountDone} backgroundColor={color.bg.light} />
             <div className="space-y-4 mb-2">
-                {map(todos, todo => <TodoListItem todo={todo} color={color} />)}
+                {map(todos, todo => <TodoListItem key={todo.id} todo={todo} color={color.decorationColor} />)}
             </div>
         </div>
     );

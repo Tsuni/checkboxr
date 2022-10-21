@@ -10,7 +10,7 @@ const TodoListItem = ({ todo, color }: Props) => {
     return (
         <div>
             <div className="flex justify-between">
-                <div className={`text-stone-700 font-medium text-lg underline decoration-${color}-300`}>{todo.title}</div>
+                <div className={`text-stone-700 font-medium text-lg underline ${color}`}>{todo.title}</div>
                 <StopIcon />
             </div>
             <div className={`text-stone-500 font-medium text-base`}>{todo.description}</div>
