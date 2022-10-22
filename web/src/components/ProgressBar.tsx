@@ -6,12 +6,10 @@ interface Props {
 
 const ProgressBar = ({ total, done, backgroundColor }: Props) => {
     const percentageDone = (done / total) * 100;
-    const fillPercentageClass = `w-[${percentageDone}%]`;
-    console.log({percentageDone})
 
     return (
         <div className="bg-stone-300 w-full h-1">
-            <div className={`${fillPercentageClass} h-1 ${backgroundColor}`} />
+            <div className={`h-1 ${backgroundColor}`} style={{width: `${percentageDone}%`}} />
         </div>
     )
 }
