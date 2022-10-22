@@ -3,13 +3,37 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Route,
+} from "react-router-dom";
+import { ErrorPage } from './components/ErrorPage';
+import { StartTodoFlow } from './features/todoFlow/StartTodoFlow';
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "todoFlow",
+    element: <StartTodoFlow />,
+  },
+]);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
 root.render(
   <React.StrictMode>
-    <App />
+    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-full m-4">
+        <div className="mx-auto max-w-3xl h-full">
+          <RouterProvider router={router} />
+        </div>
+     </div>
   </React.StrictMode>
 );
 
