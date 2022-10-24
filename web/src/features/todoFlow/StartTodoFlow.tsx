@@ -51,7 +51,12 @@ const StartTodoFlow = () => {
     const onSelectTime = (time: Time) => {
         todoBuilderData.time = time;
         setTodoBuilderData({...todoBuilderData });
-        setStep(TIME_STEP);
+        // Finish here
+
+    }
+
+    const createTodo = () => {
+        
     }
 
     const stepRenderer = () => {
