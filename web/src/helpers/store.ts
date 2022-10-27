@@ -1,4 +1,5 @@
 import create from 'zustand'
+import { persist } from 'zustand/middleware'
 import { Todo } from '../interfaces/todo';
 
 interface TodoState {
@@ -6,9 +7,16 @@ interface TodoState {
     addTodo: (arg0: Todo) => void
 }
 
-const useTodoStore = create<TodoState>((set) => ({
-  todos: {},
-  addTodo: todo => set(state => ({ todos: {...state.todos, [todo.id]: todo } })),
-}));
+const useTodoStore = create<TodoState>()(
+    persist(
+        (set) => ({
+            todos: {},
+            addTodo: todo => set(state => ({ todos: {...state.todos, [todo.id]: todo } })),
+        }),
+        {
+            name: 'todo-storage',
+        }
+    )
+);
 
 export { useTodoStore };
