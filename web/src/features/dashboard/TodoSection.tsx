@@ -11,7 +11,6 @@ interface Props {
 
 const TodoSection = ({ todos, type }: Props) => {
     const color = getColorTheme(type);
-    console.log({color})
     const amountDone = size(filter(todos, (todo: Todo) => todo.completedAt))
 
     return (

@@ -10,7 +10,6 @@ interface ThemeObject {
         }
 }
 
-
 const getColorTheme = (type: string): ThemeObject => {
     switch (type) {
         case DAILY:
