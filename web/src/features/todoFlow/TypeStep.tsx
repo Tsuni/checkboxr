@@ -1,15 +1,16 @@
 import { FlowButton } from "../../components/FlowButton";
+import { Type } from "../../interfaces/todo";
 
 interface Props {
-    onSelectType: (arg0: string) => void,
+    onSelectType: (arg0: Type) => void,
 }
 
 const TypeStep = ({ onSelectType }: Props) => {
     return (
         <div className="flex flex-col justify-center h-full space-y-8">
-            <FlowButton text="Daily" onClick={() => onSelectType('Daily')} />
-            <FlowButton text="Weekly" onClick={() => onSelectType('Weekly')}/>
-            <FlowButton text="Monthly" onClick={() => onSelectType('Monthly')} />
+            <FlowButton text="Daily" onClick={() => onSelectType(Type.daily)} />
+            <FlowButton text="Weekly" onClick={() => onSelectType(Type.weekly)}/>
+            <FlowButton text="Monthly" onClick={() => onSelectType(Type.monthly)} />
         </div>
     )
 }

@@ -3,7 +3,7 @@ import { BigStatDisplay } from "../../components/BigStatDisplay";
 import { Todo } from "../../interfaces/todo";
 
 interface Props {
-    todos: Todo[]
+    todos: { [key: string]: Todo }
 }
 
 const MainStats = ({ todos }: Props) => {

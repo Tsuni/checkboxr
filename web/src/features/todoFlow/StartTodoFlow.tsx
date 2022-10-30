@@ -1,7 +1,11 @@
 import { useState } from "react";
+import { v4 as uuidv4 } from 'uuid';
+import { useNavigate } from "react-router-dom";
+import { useTodoStore } from "../../helpers/store";
 import { Category } from "../../interfaces/category";
 import { Task } from "../../interfaces/task";
 import { Time } from "../../interfaces/time";
+import { Todo, Type } from "../../interfaces/todo";
 import { CategoryStep } from "./CategoryStep";
 import { TaskStep } from "./TaskStep";
 import { TimeStep } from "./TimeStep";
@@ -13,24 +17,26 @@ const TASK_STEP = 'TASK_STEP';
 const TIME_STEP = 'TIME_STEP';
 
 interface todoBuilder {
-    type: string,
+    type: Type,
     category: Category
     task: Task,
     time: Time
 }
 
 const initialTodoBuilderState: todoBuilder = {
-    type: '',
+    type: Type.daily,
     category: { id: '', name: '', },
     task: { id: '', name: '', categoryId: ''},
     time: { id: '', readableTime: ''}
 }
 
 const StartTodoFlow = () => {
+    const navigate = useNavigate();
     const [step, setStep] = useState(TYPE_STEP);
     const [todoBuilderData, setTodoBuilderData] = useState<todoBuilder>(initialTodoBuilderState);
+    const addTodo = useTodoStore(state => state.addTodo);
 
-    const onSelectType = (type: string) => {
+    const onSelectType = (type: Type) => {
         todoBuilderData.type = type;
         setTodoBuilderData({...todoBuilderData });
         setStep(CATEGORY_STEP);
@@ -51,12 +57,22 @@ const StartTodoFlow = () => {
     const onSelectTime = (time: Time) => {
         todoBuilderData.time = time;
         setTodoBuilderData({...todoBuilderData });
-        // Finish here
+        onFinishTodo();
+    }
 
+    const onFinishTodo = () => {
+        createTodo();
+        navigate('/');
     }
 
     const createTodo = () => {
-        
+        const newTodo: Todo = {
+            id: uuidv4(),
+            title: todoBuilderData.task.name,
+            createdAt: '28-10-22',
+            type: todoBuilderData.type
+        }
+        addTodo(newTodo);
     }
 
     const stepRenderer = () => {

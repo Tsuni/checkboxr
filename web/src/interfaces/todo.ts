@@ -4,7 +4,13 @@ interface Todo {
     description?: string,
     createdAt: string,
     completedAt?: string,
-    type: 'daily' | 'weekly' | 'monthly',
+    type: Type,
 }
 
-export { type Todo };
+enum Type {
+    daily = "daily",
+    weekly = "weekly",
+    monthly = "monthly",
+  }
+
+export { type Todo, Type };
