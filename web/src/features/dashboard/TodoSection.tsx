@@ -1,4 +1,4 @@
-import { filter, map, size } from "lodash";
+import { filter, isEmpty, map, size } from "lodash";
 import { ProgressBar } from "../../components/ProgressBar";
 import { TodoListItem } from "../../components/TodoListItem";
 import { getColorTheme } from "../../helpers/colorDeterminer";
@@ -12,6 +12,10 @@ interface Props {
 const TodoSection = ({ todos, type }: Props) => {
     const color = getColorTheme(type);
     const amountDone = size(filter(todos, (todo: Todo) => todo.completedAt))
+
+    if (isEmpty(todos)) {
+        return null;
+    }
 
     return (
         <div className="mb-7">

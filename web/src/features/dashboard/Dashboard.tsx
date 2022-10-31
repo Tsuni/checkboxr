@@ -8,16 +8,20 @@ import { MainStats } from "./MainStats";
 import { TodoSection } from "./TodoSection";
 
 const Dashboard = () => {
-    const { todos, addTodo } = useTodoStore(state => ({todos: state.todos, addTodo: state.addTodo, categories: state.categories }), shallow);
+    const { todos, addTodo } = useTodoStore(state => ({ todos: state.todos, addTodo: state.addTodo, categories: state.categories }), shallow);
     const groupedTodosByType = groupBy(todos, todo => todo.type);
     return (
-        <div>
-            <MainStats todos={todos}/>
-            <TodoSection todos={groupedTodosByType[DAILY]} type={DAILY} />
-            <TodoSection todos={groupedTodosByType[WEEKLY]} type={WEEKLY} />
-            <TodoSection todos={groupedTodosByType[MONTHLY]} type={MONTHLY} />
-            <Link to="todoFlow"><Button text="Add" /></Link>
-            <Button text="Add todo" />
+        <div className="flex flex-col content-between h-full justify-between">
+            <div>
+                <MainStats todos={todos} />
+                <TodoSection todos={groupedTodosByType[DAILY]} type={DAILY} />
+                <TodoSection todos={groupedTodosByType[WEEKLY]} type={WEEKLY} />
+                <TodoSection todos={groupedTodosByType[MONTHLY]} type={MONTHLY} />
+            </div>
+            <div className="w-full flex justify-between mb-10">
+                <Link to="todoFlow"><Button text="Add" /></Link>
+                <Button text="Add todo" />
+            </div>
         </div>
     )
 }

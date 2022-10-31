@@ -10,24 +10,28 @@ import { CategoryStep } from "./CategoryStep";
 import { TaskStep } from "./TaskStep";
 import { TimeStep } from "./TimeStep";
 import { TypeStep } from "./TypeStep";
+import { DescriptionStep } from "./DescriptionStep";
 
 const TYPE_STEP = 'TYPE';
 const CATEGORY_STEP = 'CATEGORY';
 const TASK_STEP = 'TASK_STEP';
 const TIME_STEP = 'TIME_STEP';
+const DESCRIPTION_STEP = 'DESCRIPTION_STEP';
 
 interface todoBuilder {
     type: Type,
     category: Category
     task: Task,
-    time: Time
+    time: Time,
+    description: string
 }
 
 const initialTodoBuilderState: todoBuilder = {
     type: Type.daily,
     category: { id: '', name: '', },
     task: { id: '', name: '', categoryId: ''},
-    time: { id: '', readableTime: ''}
+    time: { id: '', readableTime: ''},
+    description: ''
 }
 
 const StartTodoFlow = () => {
@@ -57,6 +61,11 @@ const StartTodoFlow = () => {
     const onSelectTime = (time: Time) => {
         todoBuilderData.time = time;
         setTodoBuilderData({...todoBuilderData });
+        setStep(DESCRIPTION_STEP);
+    }
+
+    const onDescriptionDone = (description: string) => {
+        todoBuilderData.description = description;
         onFinishTodo();
     }
 
@@ -70,7 +79,8 @@ const StartTodoFlow = () => {
             id: uuidv4(),
             title: todoBuilderData.task.name,
             createdAt: '28-10-22',
-            type: todoBuilderData.type
+            type: todoBuilderData.type,
+            description: todoBuilderData.description
         }
         addTodo(newTodo);
     }
@@ -90,6 +100,10 @@ const StartTodoFlow = () => {
 
         if (step === TIME_STEP) {
             return <TimeStep onSelectTime={onSelectTime} />
+        }
+
+        if (step === DESCRIPTION_STEP) {
+            return <DescriptionStep onDescriptionDone={onDescriptionDone}/>
         }
 
     }
