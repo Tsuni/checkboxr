@@ -19,8 +19,8 @@ const Dashboard = () => {
                 <TodoSection todos={groupedTodosByType[MONTHLY]} type={MONTHLY} />
             </div>
             <div className="w-full flex justify-between mb-10">
-                <Link to="todoFlow"><Button text="Add" /></Link>
-                <Button text="Add todo" />
+                <Link to="todoFlow" state={{ initialStep: "TYPE" }}><Button text="Template" /></Link>
+                <Link to="todoFlow" state={{ initialStep: "ONE_TIME_TODO_STEP" }}><Button text="New" /></Link>
             </div>
         </div>
     )

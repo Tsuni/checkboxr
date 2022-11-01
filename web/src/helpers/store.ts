@@ -11,6 +11,7 @@ import { timeData } from '../mockData/timeData';
 interface TodoState {
     todos: { [key: string]: Todo },
     addTodo: (arg0: Todo) => void,
+    completeTodo: (arg0: Todo) => void,
     categories: { [key: string]: Category },
     time: { [key: string]: Time },
     tasks: { [key: string]: Task },
@@ -24,6 +25,9 @@ const useTodoStore = create<TodoState>()(
             time: timeData,
             tasks: taskData,
             addTodo: (todo: Todo) => set(state => ({ todos: { ...state.todos, [todo.id]: todo } })),
+            completeTodo: (todo: Todo) => {
+                set(state => ({ todos: { ...state.todos, [todo.id]: {...todo, completedAt: 'date now'} } }))
+            },
         }),
         {
             name: 'todo-storage',
