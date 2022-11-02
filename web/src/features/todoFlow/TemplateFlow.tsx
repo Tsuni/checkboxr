@@ -11,7 +11,6 @@ import { TaskStep } from "./TaskStep";
 import { TimeStep } from "./TimeStep";
 import { TypeStep } from "./TypeStep";
 import { DescriptionStep } from "./DescriptionStep";
-import { OneTimeTodoStep } from "./OneTimeTodoStep";
 
 const TYPE_STEP = 'TYPE';
 const CATEGORY_STEP = 'CATEGORY';
@@ -45,10 +44,7 @@ const CUSTOM_TASK_TEMPLATE: Task = {
 
 const StartTodoFlow = () => {
     const navigate = useNavigate();
-    const location = useLocation();
-    const { initialStep } = location?.state;
-    console.log({ location });
-    const [step, setStep] = useState(initialStep || TYPE_STEP);
+    const [step, setStep] = useState(TYPE_STEP);
     const [todoBuilderData, setTodoBuilderData] = useState<todoBuilder>(initialTodoBuilderState);
     const addTodo = useTodoStore(state => state.addTodo);
 
@@ -72,13 +68,6 @@ const StartTodoFlow = () => {
 
     const onSelectTime = (time: Time) => {
         todoBuilderData.time = time;
-        setTodoBuilderData({...todoBuilderData });
-        setStep(DESCRIPTION_STEP);
-    }
-
-    const onOneTimeTodoDone = (title: string) => {
-        todoBuilderData.title = title;
-        todoBuilderData.task = CUSTOM_TASK_TEMPLATE;
         setTodoBuilderData({...todoBuilderData });
         setStep(DESCRIPTION_STEP);
     }
@@ -116,10 +105,6 @@ const StartTodoFlow = () => {
 
         if (step === TASK_STEP) {
             return <TaskStep onSelectTask={onSelectTask} category={todoBuilderData.category} />
-        }
-
-        if (step === ONE_TIME_TODO_STEP) {
-            return <OneTimeTodoStep onOneTimeTodoDone={onOneTimeTodoDone} />
         }
 
         if (step === TIME_STEP) {
