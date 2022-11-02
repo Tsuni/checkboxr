@@ -1,10 +1,11 @@
 interface Todo {
     id: string,
     title: string,
+    taskId: string,
     description?: string,
     createdAt: string,
     completedAt?: string,
-    type: Type,
+    type: Type
 }
 
 enum Type {

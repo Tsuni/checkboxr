@@ -26,6 +26,11 @@ const taskData: { [key: string]: Task } = {
         categoryId: 'cat2',
         name: 'Grocery shopping'
     },
+    'task_one_time_only': {
+        id: 'task_one_time_only',
+        categoryId: 'cat3',
+        name: 'One time todo'
+    }
 }
 
 export { taskData };

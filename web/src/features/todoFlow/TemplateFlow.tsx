@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useTodoStore } from "../../helpers/store";
 import { Category } from "../../interfaces/category";
 import { Task } from "../../interfaces/task";
@@ -17,21 +17,29 @@ const CATEGORY_STEP = 'CATEGORY';
 const TASK_STEP = 'TASK_STEP';
 const TIME_STEP = 'TIME_STEP';
 const DESCRIPTION_STEP = 'DESCRIPTION_STEP';
+const ONE_TIME_TODO_STEP = 'ONE_TIME_TODO_STEP';
 
 interface todoBuilder {
     type: Type,
     category: Category
     task: Task,
     time: Time,
-    description: string
+    description: string,
+    title?: string
 }
 
 const initialTodoBuilderState: todoBuilder = {
     type: Type.daily,
-    category: { id: '', name: '', },
+    category: { id: '', name: '', isHidden: false },
     task: { id: '', name: '', categoryId: ''},
     time: { id: '', readableTime: ''},
     description: ''
+}
+
+const CUSTOM_TASK_TEMPLATE: Task = {
+    id: 'customTaskId',
+    name: 'Custom task',
+    categoryId: ''
 }
 
 const StartTodoFlow = () => {
@@ -77,7 +85,8 @@ const StartTodoFlow = () => {
     const createTodo = () => {
         const newTodo: Todo = {
             id: uuidv4(),
-            title: todoBuilderData.task.name,
+            taskId: todoBuilderData.task.id,
+            title: todoBuilderData.title || todoBuilderData.task.name,
             createdAt: '28-10-22',
             type: todoBuilderData.type,
             description: todoBuilderData.description

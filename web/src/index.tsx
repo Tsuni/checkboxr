@@ -9,7 +9,7 @@ import {
   Route,
 } from "react-router-dom";
 import { ErrorPage } from './components/ErrorPage';
-import { StartTodoFlow } from './features/todoFlow/StartTodoFlow';
+import { StartTodoFlow } from './features/todoFlow/TemplateFlow';
 
 const router = createBrowserRouter([
   {
