@@ -20,7 +20,10 @@ const TodoSection = ({ todos, type }: Props) => {
 
     return (
         <div className="mb-7">
-            <ProgressBar total={size(todos)} done={amountDone} backgroundColor={color.bg.light} />
+            <div className="flex items-baseline text-stone-500 mb-2">
+                <div className="mr-4 capitalize w-20">{type}</div>
+                <ProgressBar total={size(todos)} done={amountDone} backgroundColor={color.bg.light} />
+            </div>
             <div className="space-y-4 mb-2">
                 {map(uncompletedTodos, todo => <TodoListItem key={todo.id} todo={todo} color={color.decorationColor} />)}
             </div>
