@@ -8,7 +8,7 @@ import { MainStats } from "./MainStats";
 import { TodoSection } from "./TodoSection";
 
 const Dashboard = () => {
-    const { todos, addTodo } = useTodoStore(state => ({ todos: state.todos, addTodo: state.addTodo, categories: state.categories }), shallow);
+    const { todos } = useTodoStore(state => ({ todos: state.todos, addTodo: state.addTodo, categories: state.categories }), shallow);
     const groupedTodosByType = groupBy(todos, todo => todo.type);
     return (
         <div className="flex flex-col content-between h-full justify-between">

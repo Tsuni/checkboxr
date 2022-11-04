@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useTodoStore } from "../../helpers/store";
 import { Category } from "../../interfaces/category";
 import { Task } from "../../interfaces/task";
@@ -17,8 +17,6 @@ const CATEGORY_STEP = 'CATEGORY';
 const TASK_STEP = 'TASK_STEP';
 const TIME_STEP = 'TIME_STEP';
 const DESCRIPTION_STEP = 'DESCRIPTION_STEP';
-const ONE_TIME_TODO_STEP = 'ONE_TIME_TODO_STEP';
-
 interface todoBuilder {
     type: Type,
     category: Category

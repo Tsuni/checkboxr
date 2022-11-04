@@ -1,4 +1,4 @@
-import { filter, find, groupBy, size } from "lodash";
+import { filter, groupBy, size } from "lodash";
 import { BigStatDisplay } from "../../components/BigStatDisplay";
 import { Todo, Type } from "../../interfaces/todo";
 
