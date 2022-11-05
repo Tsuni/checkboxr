@@ -39,10 +39,15 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-web
     steps:
-      - uses: actions/download-artifact@master
+      - uses: actions/download-artifact@v3
         with:
           name: web-artifact
+          path: web/build
+      - name: Structure of dowloaded filed
+        run: ls -R
       - uses: actions/configure-pages@v1
       - uses: actions/upload-pages-artifact@v1
+        with:
+          path: web/build
       - id: deployment
         uses: actions/deploy-pages@v1
