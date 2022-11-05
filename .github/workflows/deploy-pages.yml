@@ -1,6 +1,6 @@
 name: learn-github-actions
 
-run-name: ${{ github.actor }} is learning GitHub Actions
+run-name: ${{ github.actor }} is building and deploying web to GH Pages
 
 on:
   push:
@@ -11,7 +11,7 @@ defaults:
       working-directory: web
 
 jobs:
-  deploy-to-pages:
+  build-web:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -22,3 +22,17 @@ jobs:
           node-version: '16'
       - run: yarn
       - run: yarn build
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: build
+  deploy-web: 
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build-web
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
