@@ -34,12 +34,6 @@ const initialTodoBuilderState: todoBuilder = {
     description: ''
 }
 
-const CUSTOM_TASK_TEMPLATE: Task = {
-    id: 'customTaskId',
-    name: 'Custom task',
-    categoryId: ''
-}
-
 const StartTodoFlow = () => {
     const navigate = useNavigate();
     const [step, setStep] = useState(TYPE_STEP);
