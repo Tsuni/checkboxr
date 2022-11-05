@@ -40,7 +40,7 @@ jobs:
     needs: build-web
     steps:
       - uses: actions/download-artifact@master
-          with:
+        with:
           name: web-artifact
           path: .
       - uses: actions/configure-pages@v1
