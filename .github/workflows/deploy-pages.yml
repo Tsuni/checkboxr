@@ -40,12 +40,12 @@ jobs:
     needs: build-web
     steps:
       - uses: actions/download-artifact@master
-      with:
-        name: web-artifact
-        path: .
-    - uses: actions/configure-pages@v1
-    - uses: actions/upload-pages-artifact@v1
-      with:
-        path: .
-    - id: deployment
-      uses: actions/deploy-pages@v1
+          with:
+          name: web-artifact
+          path: .
+      - uses: actions/configure-pages@v1
+      - uses: actions/upload-pages-artifact@v1
+        with:
+          path: .
+      - id: deployment
+        uses: actions/deploy-pages@v1
