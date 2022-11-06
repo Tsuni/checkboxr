@@ -32,22 +32,29 @@ jobs:
         with:
           name: web-artifact
           path: web/build
-  deploy-web: 
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  deploy-web:
     runs-on: ubuntu-latest
     needs: build-web
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
       - uses: actions/download-artifact@v3
         with:
           name: web-artifact
           path: web/build
       - name: Structure of dowloaded filed
         run: ls -R
-      - uses: actions/configure-pages@v1
-      - uses: actions/upload-pages-artifact@v1
-        with:
-          path: web/build
-      - id: deployment
-        uses: actions/deploy-pages@v1
+      - run: yarn add netlify-cli -D
+      - name: Deploy to Netlify
+        env: 
+          NETLIFY_SITE_ID: ${{secrets.NETLIFY_SITE_ID}}
+          NETLIFY_AUTH_TOKEN: ${{secrets.NETLIFY_API_KEY}}
+        run: netlify deploy --dir=build
+        
+      
+        
+      
