@@ -27,11 +27,6 @@ jobs:
           node-version: '16'
       - run: yarn
       - run: yarn build
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: web-artifact
-          path: web/build
   deploy-web:
     runs-on: ubuntu-latest
     needs: build-web
@@ -42,11 +37,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '16'
-      - uses: actions/download-artifact@v3
-        with:
-          name: web-artifact
-          path: web/build
-      - name: Structure of dowloaded filed
+      - name: Structure of folder
         run: ls -R
       - run: yarn add netlify-cli -D
       - name: Deploy to Netlify
