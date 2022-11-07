@@ -6,25 +6,19 @@ import { useTodoStore } from "../../helpers/store";
 import { OneTimeTodoStep } from "./OneTimeTodoStep";
 import { DescriptionStep } from "./DescriptionStep";
 import { TypeStep } from "./TypeStep";
-import { TimeStep } from "./TimeStep";
-import { Time } from "../../interfaces/time";
-
 interface todoBuilder {
     type: Type,
-    time: Time,
     description: string,
     title: string
 }
 
 const initialTodoBuilderState: todoBuilder = {
     type: Type.daily,
-    time: { id: '', readableTime: ''},
     description: '',
     title: '',
 }
 
 const TYPE_STEP = 'TYPE';
-const TIME_STEP = 'TIME_STEP';
 const DESCRIPTION_STEP = 'DESCRIPTION_STEP';
 const ONE_TIME_TODO_STEP = 'ONE_TIME_TODO_STEP';
 
@@ -46,13 +40,7 @@ const OneTimeFlow = () => {
 
     const onSelectType = (type: Type) => {
         todoBuilderData.type = type;
-        setTodoBuilderData({...todoBuilderData });
-        setStep(TIME_STEP);
-    }
-
-    const onSelectTime = (time: Time) => {
-        todoBuilderData.time = time;
-        setTodoBuilderData({...todoBuilderData });
+        setTodoBuilderData({ ...todoBuilderData });
         onFinishTodo();
     }
 
@@ -73,30 +61,15 @@ const OneTimeFlow = () => {
         addTodo(newTodo);
     }
 
-    const stepRenderer = () => {
-        if (step === ONE_TIME_TODO_STEP) {
-            return <OneTimeTodoStep onTitleDone={onTitleDone} />
-        }
-
-        if (step === DESCRIPTION_STEP) {
-            return <DescriptionStep onDescriptionDone={onDescriptionDone}/>
-        }
-
-        if (step === TYPE_STEP) {
-            return <TypeStep onSelectType={onSelectType} />
-        }
-
-        if (step === TIME_STEP) {
-            return <TimeStep onSelectTime={onSelectTime} />
-        }
+    if (step === ONE_TIME_TODO_STEP) {
+        return <OneTimeTodoStep onTitleDone={onTitleDone} />
     }
 
+    if (step === DESCRIPTION_STEP) {
+        return <DescriptionStep onDescriptionDone={onDescriptionDone} />
+    }
 
-    return (
-        <div className="h-full">
-            {stepRenderer()}
-        </div>
-    )
+    return <TypeStep onSelectType={onSelectType} />;
 }
 
 export { OneTimeFlow };

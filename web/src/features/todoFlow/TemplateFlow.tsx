@@ -29,12 +29,12 @@ interface todoBuilder {
 const initialTodoBuilderState: todoBuilder = {
     type: Type.daily,
     category: { id: '', name: '', isHidden: false },
-    task: { id: '', name: '', categoryId: ''},
-    time: { id: '', readableTime: ''},
+    task: { id: '', name: '', categoryId: '' },
+    time: { id: '', readableTime: '' },
     description: ''
 }
 
-const StartTodoFlow = () => {
+const TemplateFlow = () => {
     const navigate = useNavigate();
     const [step, setStep] = useState(TYPE_STEP);
     const [todoBuilderData, setTodoBuilderData] = useState<todoBuilder>(initialTodoBuilderState);
@@ -42,25 +42,25 @@ const StartTodoFlow = () => {
 
     const onSelectType = (type: Type) => {
         todoBuilderData.type = type;
-        setTodoBuilderData({...todoBuilderData });
+        setTodoBuilderData({ ...todoBuilderData });
         setStep(CATEGORY_STEP);
     }
 
     const onSelectCategory = (category: Category) => {
         todoBuilderData.category = category;
-        setTodoBuilderData({...todoBuilderData });
+        setTodoBuilderData({ ...todoBuilderData });
         setStep(TASK_STEP);
     }
 
     const onSelectTask = (task: Task) => {
         todoBuilderData.task = task;
-        setTodoBuilderData({...todoBuilderData });
+        setTodoBuilderData({ ...todoBuilderData });
         setStep(TIME_STEP);
     }
 
     const onSelectTime = (time: Time) => {
         todoBuilderData.time = time;
-        setTodoBuilderData({...todoBuilderData });
+        setTodoBuilderData({ ...todoBuilderData });
         setStep(DESCRIPTION_STEP);
     }
 
@@ -86,34 +86,23 @@ const StartTodoFlow = () => {
         addTodo(newTodo);
     }
 
-    const stepRenderer = () => {
-        if (step === TYPE_STEP) {
-            return <TypeStep onSelectType={onSelectType} />
-        }
-
-        if (step === CATEGORY_STEP) {
-            return <CategoryStep onSelectCategory={onSelectCategory} />
-        }
-
-        if (step === TASK_STEP) {
-            return <TaskStep onSelectTask={onSelectTask} category={todoBuilderData.category} />
-        }
-
-        if (step === TIME_STEP) {
-            return <TimeStep onSelectTime={onSelectTime} />
-        }
-
-        if (step === DESCRIPTION_STEP) {
-            return <DescriptionStep onDescriptionDone={onDescriptionDone}/>
-        }
-
+    if (step === TYPE_STEP) {
+        return <TypeStep onSelectType={onSelectType} />
     }
 
-    return (
-        <div className="h-full">
-            {stepRenderer()}
-        </div>
-    )
+    if (step === CATEGORY_STEP) {
+        return <CategoryStep onSelectCategory={onSelectCategory} />
+    }
+
+    if (step === TASK_STEP) {
+        return <TaskStep onSelectTask={onSelectTask} category={todoBuilderData.category} />
+    }
+
+    if (step === TIME_STEP) {
+        return <TimeStep onSelectTime={onSelectTime} />
+    }
+
+    return <DescriptionStep onDescriptionDone={onDescriptionDone} />
 }
 
-export { StartTodoFlow };
+export { TemplateFlow };

@@ -10,6 +10,7 @@ import { TodoSection } from "./TodoSection";
 const Dashboard = () => {
     const { todos } = useTodoStore(state => ({ todos: state.todos, addTodo: state.addTodo, categories: state.categories }), shallow);
     const groupedTodosByType = groupBy(todos, todo => todo.type);
+
     return (
         <div className="flex flex-col content-between h-full justify-between">
             <div>
@@ -19,8 +20,8 @@ const Dashboard = () => {
                 <TodoSection todos={groupedTodosByType[MONTHLY]} type={MONTHLY} />
             </div>
             <div className="w-full flex justify-between mb-10">
-                <Link to="todoFlow" state={{ initialStep: "TYPE" }}><Button text="Template" /></Link>
-                <Link to="todoFlow" state={{ initialStep: "ONE_TIME_TODO_STEP" }}><Button text="New" /></Link>
+                <Link to="todo/template"><Button text="Template" /></Link>
+                <Link to="todo/one"><Button text="New" /></Link>
             </div>
         </div>
     )

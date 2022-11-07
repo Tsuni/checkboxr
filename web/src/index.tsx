@@ -8,7 +8,9 @@ import {
   RouterProvider
 } from "react-router-dom";
 import { ErrorPage } from './components/ErrorPage';
-import { StartTodoFlow } from './features/todoFlow/TemplateFlow';
+import { TemplateFlow } from './features/todoFlow/TemplateFlow';
+import { TodoFlow } from './features/todoFlow/TodoFlow';
+import { OneTimeFlow } from './features/todoFlow/OneTimeFlow';
 
 const router = createBrowserRouter([
   {
@@ -17,8 +19,18 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "todoFlow",
-    element: <StartTodoFlow />,
+    path: "todo",
+    element: <TodoFlow />,
+    children: [
+      {
+        path: 'template',
+        element: <TemplateFlow />
+      },
+      {
+        path: 'one',
+        element: <OneTimeFlow />
+      }
+    ]
   },
 ]);
 
