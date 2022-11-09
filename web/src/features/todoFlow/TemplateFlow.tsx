@@ -29,7 +29,7 @@ interface todoBuilder {
 const initialTodoBuilderState: todoBuilder = {
     type: Type.daily,
     category: { id: '', name: '', isHidden: false },
-    task: { id: '', name: '', categoryId: '' },
+    task: { id: '', name: '', categoryId: '', isHidden: false },
     time: { id: '', readableTime: '' },
     description: ''
 }

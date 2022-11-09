@@ -10,7 +10,7 @@ interface Props {
 }
 
 const TaskStep = ({ onSelectTask, category }: Props) => {
-    const filteredTaskByCategory = filter(taskData, task => task.categoryId === category.id);
+    const filteredTaskByCategory = filter(taskData, task => task.categoryId === category.id && !task.isHidden);
 
     return (
         <div className="flex flex-col justify-center h-full space-y-8">
