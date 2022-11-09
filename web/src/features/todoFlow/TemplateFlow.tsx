@@ -22,8 +22,7 @@ interface todoBuilder {
     category: Category
     task: Task,
     time: Time,
-    description: string,
-    title?: string
+    description: string
 }
 
 const initialTodoBuilderState: todoBuilder = {
@@ -78,7 +77,7 @@ const TemplateFlow = () => {
         const newTodo: Todo = {
             id: uuidv4(),
             taskId: todoBuilderData.task.id,
-            title: todoBuilderData.title || todoBuilderData.task.name,
+            title: todoBuilderData.task.name,
             createdAt: '28-10-22',
             type: todoBuilderData.type,
             description: todoBuilderData.description
