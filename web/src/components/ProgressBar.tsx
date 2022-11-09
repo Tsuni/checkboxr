@@ -9,7 +9,7 @@ const ProgressBar = ({ total, done, backgroundColor }: Props) => {
 
     return (
         <div className="bg-stone-300 w-full h-1">
-            <div className={`h-1 ${backgroundColor}`} style={{width: `${percentageDone}%`}} />
+            <div className={`h-1 ${backgroundColor} transition-all ease-in-out delay-150 duration-300`} style={{width: `${percentageDone}%`}} />
         </div>
     )
 }
