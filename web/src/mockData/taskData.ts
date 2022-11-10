@@ -31,8 +31,8 @@ const taskData: { [key: string]: Task } = {
         name: 'Grocery shopping',
         isHidden: false
     },
-    'task_one_time_only': {
-        id: 'task_one_time_only',
+    'oneTimeOnly': {
+        id: 'oneTimeOnly',
         categoryId: 'cat3',
         name: 'One time todo',
         isHidden: true
