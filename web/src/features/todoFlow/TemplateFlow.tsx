@@ -21,7 +21,6 @@ interface todoBuilder {
     type: Type,
     category: Category
     task: Task,
-    time: Time,
     description: string
 }
 
@@ -29,7 +28,6 @@ const initialTodoBuilderState: todoBuilder = {
     type: Type.daily,
     category: { id: '', name: '', isHidden: false },
     task: { id: '', name: '', categoryId: '', isHidden: false },
-    time: { id: '', readableTime: '' },
     description: ''
 }
 
@@ -53,12 +51,6 @@ const TemplateFlow = () => {
 
     const onSelectTask = (task: Task) => {
         todoBuilderData.task = task;
-        setTodoBuilderData({ ...todoBuilderData });
-        setStep(TIME_STEP);
-    }
-
-    const onSelectTime = (time: Time) => {
-        todoBuilderData.time = time;
         setTodoBuilderData({ ...todoBuilderData });
         setStep(DESCRIPTION_STEP);
     }

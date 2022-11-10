@@ -6,6 +6,7 @@ import { useTodoStore } from "../../helpers/store";
 import { OneTimeTodoStep } from "./OneTimeTodoStep";
 import { DescriptionStep } from "./DescriptionStep";
 import { TypeStep } from "./TypeStep";
+import { taskData } from "../../mockData/taskData";
 interface todoBuilder {
     type: Type,
     description: string,
@@ -52,7 +53,7 @@ const OneTimeFlow = () => {
     const createTodo = () => {
         const newTodo: Todo = {
             id: uuidv4(),
-            taskId: 'task_one_time_only',
+            taskId: taskData.oneTimeOnly.id,
             title: todoBuilderData.title,
             createdAt: '28-10-22',
             type: todoBuilderData.type,
