@@ -89,10 +89,6 @@ const TemplateFlow = () => {
         return <TaskStep onSelectTask={onSelectTask} category={todoBuilderData.category} />
     }
 
-    if (step === TIME_STEP) {
-        return <TimeStep onSelectTime={onSelectTime} />
-    }
-
     return <DescriptionStep onDescriptionDone={onDescriptionDone} />
 }
 

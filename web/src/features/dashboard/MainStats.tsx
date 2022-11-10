@@ -1,4 +1,5 @@
 import { filter, groupBy, size } from "lodash";
+import { Link } from "react-router-dom";
 import { BigStatDisplay } from "../../components/BigStatDisplay";
 import { Todo, Type } from "../../interfaces/todo";
 
@@ -21,7 +22,7 @@ const MainStats = ({ todos }: Props) => {
 
     return (
         <dl className="mt-10 text-center mx-auto grid max-w-3xl grid-cols-3 gap-8 mb-7">
-            <BigStatDisplay number={displayNumber(grouped[Type.daily])} title="Daily" />
+            <Link to="history/daily"><BigStatDisplay number={displayNumber(grouped[Type.daily])} title="Daily" /></Link>
             <BigStatDisplay number={displayNumber(grouped[Type.weekly])} title="Weekly" />
             <BigStatDisplay number={displayNumber(grouped[Type.monthly])} title="Monthly" />
         </dl>
