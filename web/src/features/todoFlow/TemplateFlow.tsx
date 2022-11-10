@@ -21,16 +21,13 @@ interface todoBuilder {
     type: Type,
     category: Category
     task: Task,
-    time: Time,
-    description: string,
-    title?: string
+    description: string
 }
 
 const initialTodoBuilderState: todoBuilder = {
     type: Type.daily,
     category: { id: '', name: '', isHidden: false },
-    task: { id: '', name: '', categoryId: '' },
-    time: { id: '', readableTime: '' },
+    task: { id: '', name: '', categoryId: '', isHidden: false },
     description: ''
 }
 
@@ -55,12 +52,6 @@ const TemplateFlow = () => {
     const onSelectTask = (task: Task) => {
         todoBuilderData.task = task;
         setTodoBuilderData({ ...todoBuilderData });
-        setStep(TIME_STEP);
-    }
-
-    const onSelectTime = (time: Time) => {
-        todoBuilderData.time = time;
-        setTodoBuilderData({ ...todoBuilderData });
         setStep(DESCRIPTION_STEP);
     }
 
@@ -78,7 +69,7 @@ const TemplateFlow = () => {
         const newTodo: Todo = {
             id: uuidv4(),
             taskId: todoBuilderData.task.id,
-            title: todoBuilderData.title || todoBuilderData.task.name,
+            title: todoBuilderData.task.name,
             createdAt: '28-10-22',
             type: todoBuilderData.type,
             description: todoBuilderData.description
