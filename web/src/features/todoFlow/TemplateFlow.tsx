@@ -4,18 +4,15 @@ import { useNavigate } from "react-router-dom";
 import { useTodoStore } from "../../helpers/store";
 import { Category } from "../../interfaces/category";
 import { Task } from "../../interfaces/task";
-import { Time } from "../../interfaces/time";
 import { Todo, Type } from "../../interfaces/todo";
 import { CategoryStep } from "./CategoryStep";
 import { TaskStep } from "./TaskStep";
-import { TimeStep } from "./TimeStep";
 import { TypeStep } from "./TypeStep";
 import { DescriptionStep } from "./DescriptionStep";
 
 const TYPE_STEP = 'TYPE';
 const CATEGORY_STEP = 'CATEGORY';
 const TASK_STEP = 'TASK_STEP';
-const TIME_STEP = 'TIME_STEP';
 const DESCRIPTION_STEP = 'DESCRIPTION_STEP';
 interface todoBuilder {
     type: Type,
