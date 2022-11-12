@@ -1,5 +1,5 @@
 import { filter, map, size } from "lodash";
-import { Outlet, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { BigStatDisplay } from "../../components/BigStatDisplay";
 import { HistoryListItem } from "../../components/HistoryListItem";
 import { useTodoStore } from "../../helpers/store";
