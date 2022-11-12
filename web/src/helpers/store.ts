@@ -1,3 +1,4 @@
+import { filter } from 'lodash';
 import create from 'zustand'
 import { persist } from 'zustand/middleware'
 import { Category } from '../interfaces/category';
@@ -15,19 +16,24 @@ interface TodoState {
     categories: { [key: string]: Category },
     time: { [key: string]: Time },
     tasks: { [key: string]: Task },
+    getTodoByType: (type: string) => Todo[]
 }
 
 const useTodoStore = create<TodoState>()(
     persist(
-        (set) => ({
+        (set, get) => ({
             todos: {},
             categories: categoryData,
             time: timeData,
             tasks: taskData,
             addTodo: (todo: Todo) => set(state => ({ todos: { ...state.todos, [todo.id]: todo } })),
             completeTodo: (todo: Todo) => {
-                set(state => ({ todos: { ...state.todos, [todo.id]: {...todo, completedAt: 'date now'} } }))
+                set(state => ({ todos: { ...state.todos, [todo.id]: { ...todo, completedAt: 'date now' } } }))
             },
+            getTodoByType: (type: string) => {
+                const todos = get().todos;
+                return filter(todos, todo => todo.type === type);
+            }
         }),
         {
             name: 'todo-storage',

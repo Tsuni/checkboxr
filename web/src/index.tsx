@@ -11,6 +11,7 @@ import { ErrorPage } from './components/ErrorPage';
 import { TemplateFlow } from './features/todoFlow/TemplateFlow';
 import { TodoFlow } from './features/todoFlow/TodoFlow';
 import { OneTimeFlow } from './features/todoFlow/OneTimeFlow';
+import { History } from './features/history/History';
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       }
     ]
   },
+  {
+    path: 'history/:type',
+    element: <History />
+  }
 ]);
 
 const root = ReactDOM.createRoot(
