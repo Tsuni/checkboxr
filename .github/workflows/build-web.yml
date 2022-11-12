@@ -3,7 +3,7 @@ name: build-web
 run-name: ${{ github.actor }} is building web
 
 on:
-  push:
+  pull_request:
     branches: ["main"]
 
 defaults:
@@ -17,6 +17,7 @@ permissions:
 
 jobs:
   build-web:
+    name: build-web
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
