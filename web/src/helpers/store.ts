@@ -4,7 +4,7 @@ import { persist } from 'zustand/middleware'
 import { Category } from '../interfaces/category';
 import { Task } from '../interfaces/task';
 import { Time } from '../interfaces/time';
-import { Todo, Type } from '../interfaces/todo';
+import { Todo } from '../interfaces/todo';
 import { categoryData } from '../mockData/categoryData';
 import { taskData } from '../mockData/taskData';
 import { timeData } from '../mockData/timeData';
