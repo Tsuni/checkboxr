@@ -1,11 +1,10 @@
-import { filter, map, size } from "lodash";
+import { filter, size } from "lodash";
 import { BigStatDisplay } from "../../components/BigStatDisplay";
-import { HistoryListItem } from "../../components/HistoryListItem";
 import { useTodoStore } from "../../helpers/store";
 import { Type } from "../../interfaces/todo";
 
-const DailyHistory = () => {
-    const todos = useTodoStore(state => state.getTodoByType(Type.daily));
+const MonthlyHistory = () => {
+    const todos = useTodoStore(state => state.getTodoByType(Type.monthly));
     const completedTodos = filter(todos, todo => todo.createdAt);
 
     return (
@@ -14,11 +13,9 @@ const DailyHistory = () => {
                 <BigStatDisplay number={`${size(completedTodos)}`} title="Done" />
                 <BigStatDisplay number={`${size(todos)}`} title="Created" />
             </dl>
-            <div className="space-y-4" >
-                {map(todos, todo => <HistoryListItem key={todo.id} todo={todo} />)}
-            </div>
+            list of daily stuff
         </div>
     )
 }
 
-export { DailyHistory };
+export { MonthlyHistory };
