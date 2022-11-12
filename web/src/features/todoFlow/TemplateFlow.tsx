@@ -13,6 +13,7 @@ import { DescriptionStep } from "./DescriptionStep";
 const TYPE_STEP = 'TYPE';
 const CATEGORY_STEP = 'CATEGORY';
 const TASK_STEP = 'TASK_STEP';
+const TIME_STEP = 'TIME_STEP';
 const DESCRIPTION_STEP = 'DESCRIPTION_STEP';
 interface todoBuilder {
     type: Type,
