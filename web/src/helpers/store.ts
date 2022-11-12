@@ -16,7 +16,7 @@ interface TodoState {
     categories: { [key: string]: Category },
     time: { [key: string]: Time },
     tasks: { [key: string]: Task },
-    getTodoByType: (type: Type) => Todo[]
+    getTodoByType: (type: string) => Todo[]
 }
 
 const useTodoStore = create<TodoState>()(
@@ -30,7 +30,7 @@ const useTodoStore = create<TodoState>()(
             completeTodo: (todo: Todo) => {
                 set(state => ({ todos: { ...state.todos, [todo.id]: { ...todo, completedAt: 'date now' } } }))
             },
-            getTodoByType: (type: Type) => {
+            getTodoByType: (type: string) => {
                 const todos = get().todos;
                 return filter(todos, todo => todo.type === type);
             }

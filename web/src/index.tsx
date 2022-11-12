@@ -12,9 +12,6 @@ import { TemplateFlow } from './features/todoFlow/TemplateFlow';
 import { TodoFlow } from './features/todoFlow/TodoFlow';
 import { OneTimeFlow } from './features/todoFlow/OneTimeFlow';
 import { History } from './features/history/History';
-import { DailyHistory } from './features/history/DailyHistory';
-import { WeeklyHistory } from './features/history/WeeklyHistory';
-import { MonthlyHistory } from './features/history/MonthlyHistory';
 
 const router = createBrowserRouter([
   {
@@ -37,22 +34,8 @@ const router = createBrowserRouter([
     ]
   },
   {
-    path: 'history',
-    element: <History />,
-    children: [
-      {
-        path: 'daily',
-        element: <DailyHistory />
-      },
-      {
-        path: 'weekly',
-        element: <WeeklyHistory />
-      },
-      {
-        path: 'monthly',
-        element: <MonthlyHistory />
-      }
-    ]
+    path: 'history/:type',
+    element: <History />
   }
 ]);
 
