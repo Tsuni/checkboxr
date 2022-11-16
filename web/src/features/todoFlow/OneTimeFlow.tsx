@@ -55,7 +55,7 @@ const OneTimeFlow = () => {
             id: uuidv4(),
             taskId: taskData.oneTimeOnly.id,
             title: todoBuilderData.title,
-            createdAt: '28-10-22',
+            createdAt: Date.now(),
             type: todoBuilderData.type,
             description: todoBuilderData.description
         }
