@@ -9,7 +9,6 @@ import { CategoryStep } from "./CategoryStep";
 import { TaskStep } from "./TaskStep";
 import { TypeStep } from "./TypeStep";
 import { DescriptionStep } from "./DescriptionStep";
-import { now } from "lodash";
 
 const TYPE_STEP = 'TYPE';
 const CATEGORY_STEP = 'CATEGORY';
@@ -64,7 +63,6 @@ const TemplateFlow = () => {
     }
 
     const createTodo = () => {
-        const today = new Date();
         const newTodo: Todo = {
             id: uuidv4(),
             taskId: todoBuilderData.task.id,

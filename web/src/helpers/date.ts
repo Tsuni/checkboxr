@@ -13,12 +13,11 @@ const filterDateForType = (type: Type, unix: number) => {
     return isDateThisMonth(unix);
 }
 
-
 const getWeek = (unix: number) => {
     const temp = new Date();
     const firstDayOfYear = new Date(temp.getFullYear(), 0, 1).getTime();
-    const dayOfYear = ((unix - firstDayOfYear + 86400000)/86400000);
-    return Math.ceil(dayOfYear/7)
+    const dayOfYear = ((unix - firstDayOfYear + 86400000) / 86400000);
+    return Math.ceil(dayOfYear / 7)
 }
 
 const isDateToday = (unix: number): boolean => {
@@ -26,12 +25,16 @@ const isDateToday = (unix: number): boolean => {
     const b = new Date();
 
     return a.getFullYear() === b.getFullYear() &&
-    a.getMonth() === b.getMonth() &&
-    a.getDate() === b.getDate();
+        a.getMonth() === b.getMonth() &&
+        a.getDate() === b.getDate();
 }
 
 const isDateThisWeek = (unix: number) => {
-    return getWeek(Date.now()) === getWeek(unix);
+    const now = new Date();
+    const inputDate = new Date(unix);
+
+    return now.getFullYear() === inputDate.getFullYear() &&
+        getWeek(now.getTime()) === getWeek(inputDate.getTime());
 }
 
 const isDateThisMonth = (unix: number): boolean => {
@@ -39,7 +42,7 @@ const isDateThisMonth = (unix: number): boolean => {
     const b = new Date();
 
     return a.getFullYear() === b.getFullYear() &&
-    a.getMonth() === b.getMonth();
+        a.getMonth() === b.getMonth();
 }
 
 export { filterDateForType, isDateToday, isDateThisWeek, isDateThisMonth };
