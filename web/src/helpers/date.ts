@@ -1,7 +1,6 @@
 import { Type } from "../interfaces/todo";
 
 const filterDateForType = (type: Type, unix: number) => {
-
     if (type === Type.daily) {
         return isDateToday(unix);
     }
