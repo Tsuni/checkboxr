@@ -67,7 +67,7 @@ const TemplateFlow = () => {
             id: uuidv4(),
             taskId: todoBuilderData.task.id,
             title: todoBuilderData.task.name,
-            createdAt: '28-10-22',
+            createdAt: Date.now(),
             type: todoBuilderData.type,
             description: todoBuilderData.description
         }

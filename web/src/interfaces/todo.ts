@@ -3,7 +3,7 @@ interface Todo {
     title: string,
     taskId: string,
     description?: string,
-    createdAt: string,
+    createdAt: number,
     completedAt?: string,
     type: Type
 }

@@ -6,7 +6,6 @@ import { useTodoStore } from "../../helpers/store";
 
 const History = () => {
     const { type = 'daily' } = useParams();
-    console.log({type})
     const todos = useTodoStore(state => state.getTodoByType(type));
     const completedTodos = filter(todos, todo => todo.createdAt);
 
