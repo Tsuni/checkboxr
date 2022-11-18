@@ -30,7 +30,7 @@ const useTodoStore = create<TodoState>()(
             tasks: taskData,
             addTodo: (todo: Todo) => set(state => ({ todos: { ...state.todos, [todo.id]: todo } })),
             completeTodo: (todo: Todo) => {
-                set(state => ({ todos: { ...state.todos, [todo.id]: { ...todo, completedAt: 'date now' } } }))
+                set(state => ({ todos: { ...state.todos, [todo.id]: { ...todo, completedAt: Date.now() } } }))
             },
             getTodoByType: (type: string) => {
                 const todos = get().todos;

@@ -4,7 +4,7 @@ interface Todo {
     taskId: string,
     description?: string,
     createdAt: number,
-    completedAt?: string,
+    completedAt?: number,
     type: Type
 }
 
