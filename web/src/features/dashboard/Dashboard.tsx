@@ -9,7 +9,7 @@ import { MainStats } from "./MainStats";
 import { TodoSection } from "./TodoSection";
 
 const Dashboard = () => {
-    const { todos } = useTodoStore(state => ({ todos: state.todos, addTodo: state.addTodo, categories: state.categories }), shallow);
+    const todos  = useTodoStore(state => state.getAllActiveTodos(), shallow);
     const groupedTodosByType = groupBy(todos, todo => todo.type);
 
     return (

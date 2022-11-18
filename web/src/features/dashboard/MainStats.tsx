@@ -4,7 +4,7 @@ import { BigStatDisplay } from "../../components/BigStatDisplay";
 import { Todo, Type } from "../../interfaces/todo";
 
 interface Props {
-    todos: { [key: string]: Todo }
+    todos: Todo[]
 }
 
 const MainStats = ({ todos }: Props) => {

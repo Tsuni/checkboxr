@@ -4,10 +4,11 @@ import { persist } from 'zustand/middleware'
 import { Category } from '../interfaces/category';
 import { Task } from '../interfaces/task';
 import { Time } from '../interfaces/time';
-import { Todo } from '../interfaces/todo';
+import { Todo, Type } from '../interfaces/todo';
 import { categoryData } from '../mockData/categoryData';
 import { taskData } from '../mockData/taskData';
 import { timeData } from '../mockData/timeData';
+import { filterDateForType } from './date';
 
 interface TodoState {
     todos: { [key: string]: Todo },
@@ -16,7 +17,8 @@ interface TodoState {
     categories: { [key: string]: Category },
     time: { [key: string]: Time },
     tasks: { [key: string]: Task },
-    getTodoByType: (type: string) => Todo[]
+    getTodoByType: (type: string) => Todo[],
+    getAllActiveTodos: (type?: Type) => Todo[]
 }
 
 const useTodoStore = create<TodoState>()(
@@ -33,6 +35,10 @@ const useTodoStore = create<TodoState>()(
             getTodoByType: (type: string) => {
                 const todos = get().todos;
                 return filter(todos, todo => todo.type === type);
+            },
+            getAllActiveTodos: (type?: Type) => {
+                const todos = get().todos;
+                return filter(todos, todo => filterDateForType(type || todo.type, todo.createdAt));
             }
         }),
         {
