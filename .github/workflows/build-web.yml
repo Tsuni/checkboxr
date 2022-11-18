@@ -1,6 +1,6 @@
 name: build-web
 
-run-name: ${{ github.actor }} is building web
+run-name: ${{ github.ref_name }} is building web
 
 on:
   pull_request:
