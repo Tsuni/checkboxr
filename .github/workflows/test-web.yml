@@ -1,6 +1,6 @@
-name: build-web
+name: test-web
 
-run-name: ${{ github.ref_name }} is building web
+run-name: ${{ github.ref_name }} running web tests
 
 on:
   pull_request:
@@ -16,8 +16,8 @@ permissions:
   id-token: write
 
 jobs:
-  build-web:
-    name: build-web
+  test-web:
+    name: test-web
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -29,4 +29,4 @@ jobs:
           cache: 'yarn'
           cache-dependency-path: web/yarn.lock
       - run: yarn
-      - run: yarn build
+      - run: yarn test
