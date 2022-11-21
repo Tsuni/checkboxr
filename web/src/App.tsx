@@ -1,5 +1,5 @@
 import { Dialog, Transition } from '@headlessui/react';
-import React, { Fragment, useState } from 'react';
+import React, { Fragment } from 'react';
 import './App.css';
 import { Dashboard } from './features/dashboard/Dashboard';
 import {
@@ -13,6 +13,7 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { useTodoStore } from './helpers/store';
+import { Outlet } from 'react-router-dom';
 
 function classNames(...classes :any) {
   return classes.filter(Boolean).join(' ')
@@ -41,7 +42,7 @@ const App = () => {
       <body class="h-full">
       ```
     */}
-    <div>
+    <div className='h-full'>
       <Transition.Root show={showSidebar} as={Fragment}>
         <Dialog as="div" className="relative z-40 md:hidden" onClose={toggleSidebar}>
           <Transition.Child
@@ -196,7 +197,15 @@ const App = () => {
           </div>
         </div>
       </div>
-       <Dashboard />
+      <div className="flex flex-1 flex-col md:pl-64">
+          <main className="flex-1">
+            <div className="py-6">
+              <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
+                <Outlet />
+              </div>
+            </div>
+          </main>
+        </div>
     </div>
   </>
   )

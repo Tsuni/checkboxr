@@ -12,30 +12,37 @@ import { TemplateFlow } from './features/todoFlow/TemplateFlow';
 import { TodoFlow } from './features/todoFlow/TodoFlow';
 import { OneTimeFlow } from './features/todoFlow/OneTimeFlow';
 import { History } from './features/history/History';
+import { Dashboard } from './features/dashboard/Dashboard';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     errorElement: <ErrorPage />,
-  },
-  {
-    path: "todo",
-    element: <TodoFlow />,
     children: [
       {
-        path: 'template',
-        element: <TemplateFlow />
+        path: "/",
+        element: <Dashboard />
       },
       {
-        path: 'one',
-        element: <OneTimeFlow />
+        path: "todo",
+        element: <TodoFlow />,
+        children: [
+          {
+            path: 'template',
+            element: <TemplateFlow />
+          },
+          {
+            path: 'one',
+            element: <OneTimeFlow />
+          }
+        ]
+      },
+      {
+        path: 'history/:type',
+        element: <History />
       }
     ]
-  },
-  {
-    path: 'history/:type',
-    element: <History />
   }
 ]);
 
@@ -45,11 +52,9 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-full py-8">
-        <div className="mx-auto max-w-3xl h-full">
-          <RouterProvider router={router} />
-        </div>
-     </div>
+    <div className="h-full">
+      <RouterProvider router={router} />
+    </div>
   </React.StrictMode>
 );
 
