@@ -11,6 +11,7 @@ import { timeData } from '../mockData/timeData';
 import { filterDateForType } from './date';
 
 interface TodoState {
+    showSidebar: boolean,
     todos: { [key: string]: Todo },
     addTodo: (arg0: Todo) => void,
     completeTodo: (arg0: Todo) => void,
@@ -18,12 +19,14 @@ interface TodoState {
     time: { [key: string]: Time },
     tasks: { [key: string]: Task },
     getTodoByType: (type: string) => Todo[],
-    getAllActiveTodos: (type?: Type) => Todo[]
+    getAllActiveTodos: (type?: Type) => Todo[],
+    toggleSidebar: () => void
 }
 
 const useTodoStore = create<TodoState>()(
     persist(
         (set, get) => ({
+            showSidebar: false,
             todos: {},
             categories: categoryData,
             time: timeData,
@@ -39,7 +42,8 @@ const useTodoStore = create<TodoState>()(
             getAllActiveTodos: (type?: Type) => {
                 const todos = get().todos;
                 return filter(todos, todo => filterDateForType(type || todo.type, todo.createdAt));
-            }
+            },
+            toggleSidebar: () => set(state => ({showSidebar: !state.showSidebar}))
         }),
         {
             name: 'todo-storage',

@@ -2,6 +2,8 @@ import { filter, map, size } from "lodash";
 import { useParams } from "react-router-dom";
 import { BigStatDisplay } from "../../components/BigStatDisplay";
 import { HistoryListItem } from "../../components/HistoryListItem";
+import { GoBackButton } from "../../components/navigation/GoBackButton";
+import { NavBar } from "../../components/navigation/NavBar";
 import { useTodoStore } from "../../helpers/store";
 
 const History = () => {
@@ -11,7 +13,8 @@ const History = () => {
 
     return (
         <div>
-            <dl className="mt-10 text-center mx-auto grid max-w-3xl grid-cols-2 gap-8 mb-7">
+            <NavBar leftIconButton={<GoBackButton />} />
+            <dl className="my-7 text-center mx-auto grid max-w-3xl grid-cols-2 gap-8">
                 <BigStatDisplay number={`${size(completedTodos)}`} title="Done" />
                 <BigStatDisplay number={`${size(todos)}`} title="Created" />
             </dl>
