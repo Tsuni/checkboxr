@@ -17,8 +17,6 @@ const TodoSection = ({ todos, type }: Props) => {
     const todosForTimeSpan = filter(todos, todo => filterDateForType(type, todo.createdAt));
     const [doneTodos, uncompletedTodos] = partition(todosForTimeSpan, todo => todo.completedAt);
 
-    
-
     if (isEmpty(todos)) {
         return null;
     }
