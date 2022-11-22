@@ -101,7 +101,7 @@ const App = () => {
                     </nav>
                   </div>
                   <div className="flex flex-shrink-0 border-t border-stone-300 p-4">
-                    <a href="#" className="group block flex-shrink-0">
+                    <NavLink to="profile" className="group block flex-shrink-0">
                       <div className="flex items-center">
                         <div>
                           <UserIcon
@@ -110,7 +110,7 @@ const App = () => {
                         </div>
                         <p className="text-sm font-medium text-stone-700">Profile</p>
                       </div>
-                    </a>
+                    </NavLink>
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
@@ -151,7 +151,7 @@ const App = () => {
               </nav>
             </div>
             <div className="flex flex-shrink-0 border-t border-stone-300 p-4">
-              <a href="#" className="group block flex-shrink-0">
+            <NavLink to="profile" className="group block flex-shrink-0">
                 <div className="flex items-center">
                   <div>
                     <UserIcon
@@ -160,7 +160,7 @@ const App = () => {
                   </div>
                   <p className="text-sm font-medium text-stone-700">Profile</p>
                 </div>
-              </a>
+              </NavLink>
             </div>
           </div>
         </div>
