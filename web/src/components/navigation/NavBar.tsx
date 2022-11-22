@@ -1,7 +1,3 @@
-import { ArrowLeftIcon } from "../../icons/ArrowLeftIcon";
-import { HamburgerMenuIcon } from "../../icons/HamburgerMenuIcon";
-import { useNavigate } from "react-router-dom";
-
 interface Props {
     leftIconButton?: React.ReactNode | null,
     rightIconButton?: React.ReactNode | null
