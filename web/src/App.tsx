@@ -2,13 +2,12 @@ import { Dialog, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
 import './App.css';
 import {
-  CalendarIcon,
   ChartBarIcon,
-  FolderIcon,
+  Cog6ToothIcon,
   HomeIcon,
-  InboxIcon,
-  UsersIcon,
+  BookOpenIcon,
   XMarkIcon,
+  UserIcon,
 } from '@heroicons/react/24/outline'
 import { useTodoStore } from './helpers/store';
 import { NavLink, Outlet } from 'react-router-dom';
@@ -19,9 +18,9 @@ function classNames(...classes: any) {
 
 const navigation = [
   { name: 'Home', to: '/', icon: HomeIcon, current: true },
-  { name: 'History', to: 'history', icon: UsersIcon, current: false },
-  { name: 'Analytics', to: 'analytics', icon: CalendarIcon, current: false },
-  { name: 'Settings', to: 'settings', icon: FolderIcon, current: false },
+  { name: 'History', to: 'history', icon: BookOpenIcon, current: false },
+  { name: 'Analytics', to: 'analytics', icon: ChartBarIcon, current: false },
+  { name: 'Settings', to: 'settings', icon: Cog6ToothIcon, current: false },
 ]
 
 const App = () => {
@@ -87,7 +86,7 @@ const App = () => {
                         <NavLink
                           key={item.name}
                           to={item.to}
-                          className='text-stone-700 hover:bg-stone-300 hover:text-stone-700 group flex items-center px-2 py-2 text-base font-medium rounded-md'
+                          className={({isActive}) => `${isActive && 'bg-stone-300'} text-stone-700 hover:bg-stone-300 hover:text-stone-700 group flex items-center px-2 py-2 text-base font-medium rounded-md`}
                         >
                           <item.icon
                             className={classNames(
@@ -100,6 +99,18 @@ const App = () => {
                         </NavLink>
                       ))}
                     </nav>
+                  </div>
+                  <div className="flex flex-shrink-0 border-t border-stone-300 p-4">
+                    <a href="#" className="group block flex-shrink-0">
+                      <div className="flex items-center">
+                        <div>
+                          <UserIcon
+                            className="inline-block h-6 w-6 mr-4"
+                          />
+                        </div>
+                        <p className="text-sm font-medium text-stone-700">Profile</p>
+                      </div>
+                    </a>
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
@@ -125,7 +136,7 @@ const App = () => {
                   <NavLink
                     key={item.name}
                     to={item.to}
-                    className='text-stone-700 hover:bg-gray-50 hover:text-stone-700 group flex items-center px-2 py-2 text-sm font-medium rounded-md'
+                    className={({isActive}) => `${isActive && 'bg-stone-300'} text-stone-700 hover:bg-stone-300 hover:text-stone-700 group flex items-center px-2 py-2 text-base font-medium rounded-md`}
                   >
                     <item.icon
                       className={classNames(
@@ -138,6 +149,18 @@ const App = () => {
                   </NavLink>
                 ))}
               </nav>
+            </div>
+            <div className="flex flex-shrink-0 border-t border-stone-300 p-4">
+              <a href="#" className="group block flex-shrink-0">
+                <div className="flex items-center">
+                  <div>
+                    <UserIcon
+                      className="inline-block h-6 w-6 mr-4"
+                    />
+                  </div>
+                  <p className="text-sm font-medium text-stone-700">Profile</p>
+                </div>
+              </a>
             </div>
           </div>
         </div>
