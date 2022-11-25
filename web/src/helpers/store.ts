@@ -6,6 +6,7 @@ import { Task } from '../interfaces/task';
 import { Time } from '../interfaces/time';
 import { Todo, Type } from '../interfaces/todo';
 import { categoryData } from '../mockData/categoryData';
+import { createInitialTodoData } from '../mockData/initialTodoData';
 import { taskData } from '../mockData/taskData';
 import { timeData } from '../mockData/timeData';
 import { filterDateForType } from './date';
@@ -18,7 +19,7 @@ interface TodoState {
     categories: { [key: string]: Category },
     time: { [key: string]: Time },
     tasks: { [key: string]: Task },
-    getTodoByType: (type: string) => Todo[],
+    getTodoByType: (type: Type) => Todo[],
     getAllActiveTodos: (type?: Type) => Todo[],
     toggleSidebar: () => void
 }
@@ -27,7 +28,7 @@ const useTodoStore = create<TodoState>()(
     persist(
         (set, get) => ({
             showSidebar: false,
-            todos: {},
+            todos: createInitialTodoData(),
             categories: categoryData,
             time: timeData,
             tasks: taskData,
@@ -35,7 +36,7 @@ const useTodoStore = create<TodoState>()(
             completeTodo: (todo: Todo) => {
                 set(state => ({ todos: { ...state.todos, [todo.id]: { ...todo, completedAt: Date.now() } } }))
             },
-            getTodoByType: (type: string) => {
+            getTodoByType: (type: Type) => {
                 const todos = get().todos;
                 return filter(todos, todo => todo.type === type);
             },

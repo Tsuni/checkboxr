@@ -5,11 +5,12 @@ import { HistoryListItem } from "../../components/HistoryListItem";
 import { GoBackButton } from "../../components/navigation/GoBackButton";
 import { NavBar } from "../../components/navigation/NavBar";
 import { useTodoStore } from "../../helpers/store";
+import { Type } from "../../interfaces/todo";
 
 const History = () => {
-    const { type = 'daily' } = useParams();
+    const { type = Type.daily } = useParams<{ type?: Type}>();
     const todos = useTodoStore(state => state.getTodoByType(type));
-    const completedTodos = filter(todos, todo => todo.createdAt);
+    const completedTodos = filter(todos, todo => todo.completedAt);
 
     return (
         <div>
